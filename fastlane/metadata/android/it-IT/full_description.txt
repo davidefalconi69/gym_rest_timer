@@ -1,0 +1,12 @@
+Un timer di riposo minimalista e senza distrazioni, progettato per la palestra. Niente disordine, niente pubblicità, solo uno strumento semplice per monitorare i tuoi intervalli di riposo in modo efficiente.
+
+**Funzionalità**
+- **Senza Distrazioni:** Un singolo timer configurabile con un display ampio e pulito.
+- **Notifiche Live:** Vedi il conto alla rovescia direttamente nella barra delle notifiche.
+- **Privacy al Primo Posto:** Nessun permesso internet, nessuna analitica, nessun tracciamento. I tuoi dati rimangono sul tuo dispositivo.
+- **Efficienza Energetica:** Utilizza un servizio in background leggero per mantenere il timer attivo senza consumare la batteria.
+- **Motore Temi:** Scegli tra i temi Chiaro, Scuro, AMOLED (Nero Assoluto) o Monocromatico.
+- **Personalizzabile:** Regola suoni, vibrazione e durate predefinite per adattarsi al tuo stile di allenamento.
+
+**Open Source**
+Questo progetto è open source e rilasciato sotto licenza GPLv3.

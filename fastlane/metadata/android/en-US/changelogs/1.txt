@@ -1,0 +1,9 @@
+Initial release
+
+- Live countdown in notification
+- Custom timer duration
+- Light, Dark, and AMOLED themes
+- Customizable accent colors
+- Audio and haptic feedback options
+- Respects Do Not Disturb mode
+- English and Italian localization

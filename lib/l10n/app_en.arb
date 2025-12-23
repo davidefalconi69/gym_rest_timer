@@ -1,0 +1,76 @@
+{
+  "@@locale": "en",
+  "appTitle": "Gym Rest Timer",
+  "reset": "Reset",
+  "actionPause": "PAUSE",
+  "actionResume": "RESUME",
+  "actionStart": "START",
+  "statusDone": "DONE!",
+  "statusPaused": "PAUSED",
+  "statusRest": "REST",
+  "statusReady": "READY",
+  "statusResting": "Resting...",
+  "settings": "Settings",
+  "sectionTimer": "Timer",
+  "defaultDuration": "Default Duration",
+  "sectionNotification": "Notification",
+  "settingSound": "Sound",
+  "settingSoundDesc": "Play sound when timer ends",
+  "settingVibration": "Vibration",
+  "settingVibrationDesc": "Vibrate when timer ends",
+  "settingVibrateSilent": "Vibrate in Silent Mode",
+  "settingVibrateSilentDesc": "Vibrate even when device is silenced",
+  "settingSoundType": "Sound Type",
+  "selectSound": "Select Sound",
+  "defaultBeep": "Default Beep",
+  "defaultBeepDesc": "Built-in notification sound",
+  "pickFromDevice": "Pick from Device...",
+  "pickFromDeviceDesc": "Select a custom audio file",
+  "errorPickSound": "Failed to pick audio file: {error}",
+  "@errorPickSound": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "sectionAppearance": "Appearance",
+  "theme": "Theme",
+  "themeSystem": "System",
+  "themeLight": "Light",
+  "themeDark": "Dark",
+  "accentColor": "Accent Color",
+  "accentDefault": "Default (Teal)",
+  "accentCustom": "Custom",
+  "themeAmoled": "AMOLED Black",
+  "themeMonochrome": "Monochrome",
+  "dialogTitleSelectColor": "Select color",
+  "dialogSubheadingCustomColor": "Custom color",
+  "actionCancel": "Cancel",
+  "actionDone": "Done",
+  "sectionSupport": "Support",
+  "licenses": "Licenses",
+  "buyMeCoffee": "Buy me a coffee",
+  "supportDevelopment": "Support development",
+  "sectionOther": "Other",
+  "about": "About",
+  "aboutDescription": "A simple, clean rest timer for your gym workouts.\nFocus on your sets, we handle the rest.",
+  "language": "Language",
+  "systemDefault": "System Default",
+  "notificationTitle": "Rest Timer",
+  "notificationRest": "Rest: {time}",
+  "@notificationRest": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationPause": "Pause",
+  "notificationResume": "Resume",
+  "notificationStop": "Stop",
+  "errorLaunchUrl": "Could not open the link",
+  "notificationPermissionWarning": "Notifications are disabled. Enable them to control the timer from any screen.",
+  "notificationEnableButton": "Enable",
+  "setRestTime": "Set Rest Time"
+}
