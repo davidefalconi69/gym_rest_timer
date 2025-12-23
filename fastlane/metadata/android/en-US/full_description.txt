@@ -1,0 +1,12 @@
+A minimalist, distraction-free rest timer designed for the gym. No clutter, no ads, just a simple tool to track your rest intervals efficiently.
+
+**Features**
+- **Distraction-Free:** Single configurable timer with a clean, large display.
+- **Live Notifications:** See your countdown directly in the notification tray.
+- **Privacy First:** No internet permission, no analytics, no tracking. Your data stays on your device.
+- **Battery Efficient:** Uses a lightweight background service to keep the timer running without draining your battery.
+- **Theme Engine:** Choose from Light, Dark, AMOLED (True Black), or Monochrome themes.
+- **Customizable:** Adjust sound, vibration, and default durations to match your workout style.
+
+**Open Source**
+This project is open source and licensed under GPLv3.

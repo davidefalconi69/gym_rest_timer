@@ -1,0 +1,9 @@
+Rilascio iniziale
+
+- Conto alla rovescia live nella notifica
+- Durata timer personalizzata
+- Temi Chiaro, Scuro e AMOLED
+- Colori d'accento personalizzabili
+- Opzioni feedback audio e vibrazione
+- Rispetta la modalità Non Disturbare
+- Localizzazione in Inglese e Italiano
