@@ -24,6 +24,11 @@ android {
         jvmTarget = "17"
     }
 
+    dependenciesInfo {
+        includeInApk = false
+        includeInBundle = false
+    }
+
     defaultConfig {
         applicationId = "com.davidefalconi.gym_rest_timer"
         // You can update the following values to match your application needs.
