@@ -68,7 +68,12 @@ android {
             // Use release signing if available, otherwise fall back to debug signing
             // F-Droid's build server will override this with their own signing config
             signingConfig = if (hasKeystore) {
-                signingConfigs.getByName("release")
+                if (keystorePropertiesFile.exists()) {
+                    signingConfigs.getByName("release")
+                } else {
+                    // Fallback if hasKeystore is true but file somehow doesn't exist (shouldn't happen)
+                    signingConfigs.getByName("debug")
+                }
             } else {
                 signingConfigs.getByName("debug")
             }
