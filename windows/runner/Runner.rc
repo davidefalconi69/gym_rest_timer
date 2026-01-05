@@ -93,7 +93,7 @@ BEGIN
             VALUE "FileDescription", "gym_rest_timer" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "gym_rest_timer" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2025 com.davidefalconi. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 com.davidefalconi. All rights reserved." "\0"
             VALUE "OriginalFilename", "gym_rest_timer.exe" "\0"
             VALUE "ProductName", "gym_rest_timer" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"

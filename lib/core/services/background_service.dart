@@ -170,7 +170,7 @@ class BackgroundTimerService {
       debugPrint('BackgroundTimerService: Service started');
 
       // Give the service a moment to initialize, then send the start command
-      await Future.delayed(const Duration(milliseconds: 500));
+      await Future.delayed(const Duration(milliseconds: 100));
       _service.invoke(BackgroundCommand.start, {
         'totalSeconds': totalSeconds,
         'remainingSeconds': remainingSeconds,
@@ -637,9 +637,12 @@ Future<void> onStart(ServiceInstance service) async {
 
 /// Start the countdown timer in the background.
 ///
-/// REFACTORED: Now uses Android's native Chronometer for notification display.
-/// The timer still runs every second to track state for UI sync and detect
-/// completion, but we only send ONE notification at the start (not every tick).
+/// TIMESTAMP-BASED TIMING: Uses endTimeMillis to calculate remaining seconds.
+/// This makes the timer resilient to Android throttling Timer.periodic (common
+/// on MIUI/Poco/Xiaomi devices with aggressive battery optimization).
+///
+/// Even if ticks are delayed or skipped, the remaining time is always correct
+/// because it's calculated from the actual clock time, not tick count.
 ///
 /// When timer hits 0, we IMMEDIATELY reset remainingSeconds to totalSeconds
 /// and broadcast 'cooldown'. After 3 seconds, we broadcast 'ready'.
@@ -656,14 +659,13 @@ Future<Timer?> _startCountdown(
   required int Function() currentGeneration,
   required String Function() getLanguageCode,
 }) async {
-  // Calculate the end timestamp for the chronometer
-  // Add 1000ms padding because Timer.periodic fires after 1s delay,
-  // while Chronometer starts immediately (flooring the value).
-  // This syncs the visual countdown: App(10) <-> Notif(10).
+  // Calculate the end timestamp for the chronometer.
+  // This is the SINGLE SOURCE OF TRUTH for timing - both the notification
+  // chronometer and the app uses this same end time.
   final endTimeMillis =
       DateTime.now().millisecondsSinceEpoch +
       (getRemainingSeconds() * 1000) +
-      1000;
+      1000; // +1000ms to padding for floor() rounding and Chronometer sync
 
   // Show ONE chronometer notification - Android handles the countdown display
   await notificationService.showChronometerNotification(
@@ -685,11 +687,29 @@ Future<Timer?> _startCountdown(
     'BackgroundService: Chronometer started, end time: $endTimeMillis',
   );
 
-  // Start periodic timer for state tracking (NOT for notification updates)
-  return Timer.periodic(const Duration(seconds: 1), (timer) async {
-    final remaining = getRemainingSeconds();
+  // IMMEDIATE SYNC: Broadcast state right away so UI doesn't wait 1 second
+  // for the first Timer.periodic tick
+  broadcastState('running');
 
-    if (remaining <= 1) {
+  // Start periodic timer for state tracking.
+  // IMPORTANT: We calculate remaining time from the clock, NOT by decrementing.
+  // This makes the timer immune to Android throttling/delaying the periodic timer.
+  return Timer.periodic(const Duration(seconds: 1), (timer) async {
+    // TIMESTAMP-BASED CALCULATION: Always use real clock time
+    final now = DateTime.now().millisecondsSinceEpoch;
+    final msRemaining = endTimeMillis - now;
+
+    // Convert to seconds using floor to match Android Chronometer behavior
+    // Chronometer displays floor(remaining), so we must do the same
+    final calculatedRemaining = (msRemaining / 1000).floor();
+
+    // Clamp to valid range (0 to totalSeconds)
+    final remaining = calculatedRemaining.clamp(0, getTotalSeconds());
+
+    // Update the stored remaining seconds with the calculated value
+    setRemainingSeconds(remaining);
+
+    if (remaining <= 0) {
       // Timer complete!
       timer.cancel();
       setIsRunning(false);
@@ -721,13 +741,16 @@ Future<Timer?> _startCountdown(
         debugPrint('BackgroundService: Cooldown complete, now ready');
       });
     } else {
-      // Tick down - update internal state only
-      final newRemaining = remaining - 1;
-      setRemainingSeconds(newRemaining);
-
-      // Broadcast state to UI every tick (so UI stays synced)
-      // Using stateSync for consistent single source of truth
+      // Broadcast state to UI with the CALCULATED remaining time
+      // This ensures UI stays perfectly synced with the notification chronometer
       broadcastState('running');
+
+      // Debug log only every 10 seconds to reduce noise
+      if (remaining % 10 == 0) {
+        debugPrint(
+          'BackgroundService: Timer tick - ${remaining}s remaining (timestamp-based)',
+        );
+      }
     }
   });
 }
