@@ -98,7 +98,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 const String beepSoundLicense = '''
 beep.mp3 - Default Timer Sound
 
-© 2025 Davide Falconi. All rights reserved.
+© 2026 Davide Falconi. All rights reserved.
 
 This sound file was created by Davide Falconi using Audacity
 and is distributed as part of Gym Rest Timer.

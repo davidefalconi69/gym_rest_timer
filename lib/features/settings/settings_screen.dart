@@ -692,7 +692,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen>
       onTap: () => showLicensePage(
         context: context,
         applicationName: AppLocalizations.of(context)!.appTitle,
-        applicationLegalese: '© 2025 Davide Falconi',
+        applicationLegalese: '© 2026 Davide Falconi',
       ),
     );
   }
@@ -706,7 +706,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen>
       applicationName: packageInfo.appName,
       applicationVersion:
           'v${packageInfo.version} (${packageInfo.buildNumber})',
-      applicationLegalese: '© 2025 Davide Falconi',
+      applicationLegalese: '© 2026 Davide Falconi',
       children: [
         const Gap(16),
         Text(AppLocalizations.of(context)!.aboutDescription),
